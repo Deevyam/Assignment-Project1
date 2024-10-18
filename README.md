@@ -32,22 +32,21 @@ Ensure you have the following installed:
 
 Install dependencies:
 
-```bash
  
 cd rule-engine-ats
 npm install
 Set up your MongoDB connection in a .env file:
 
-```bash
  
 MONGO_URI=Atlus link
 PORT=5000
 Start the server:
 
-```bash
  
 npm start
-API Endpoints
+
+
+## API Endpoints
 1. Create Rule
 Endpoint: /api/rules/create-rule
 
@@ -56,7 +55,7 @@ Method: POST
 Request Body:
 
 json
- 
+```bash
 {
   "rule_name": "rule 1",
   "rule": "((age > 30 AND department = 'Sales') OR (age < 25 AND department = 'Marketing')) AND (salary > 50000 OR experience > 5)"
@@ -64,7 +63,7 @@ json
 Response (Success):
 
 json
- 
+```bash
 {
   "success": true,
   "message": "Rule created successfully",
@@ -79,7 +78,7 @@ Method: POST
 Request Body:
 
 json
- 
+```bash
 {
   "rule_name": "rule 1",
   "conditions": {
@@ -92,7 +91,7 @@ json
 Response (Success):
 
 json
- 
+```bash
 {
   "success": true,
   "message": "Rule evaluation successful",
@@ -106,7 +105,7 @@ Method: POST
 Request Body:
 
 json
- 
+```bash
 {
   "rule_name": "Combined Rules",
   "rules": [
@@ -117,7 +116,7 @@ json
 Response (Success):
 
 json
- 
+```bash
 {
   "success": true,
   "message": "Rules combined successfully",
@@ -131,7 +130,7 @@ Method: GET
 Response (Success):
 
 json
- 
+```bash
 {
   "success": true,
   "rules": [
@@ -145,6 +144,8 @@ json
     }
   ]
 }
+
+
 5. Delete Rule
 Endpoint: /api/rules/deleteRule
 
@@ -153,20 +154,21 @@ Method: DELETE
 Request Body:
 
 json
- 
+```bash
 {
   "rule_name": "Example Rule"
 }
 Response (Success):
 
 json
- 
+```bash
 {
   "message": "Rule deleted successfully"
 }
-Project Structure
+
+
+##Project Structure
 ```bash
- 
 .
 ├── controllers
 │   └── ruleController.js       # Handles rule-related API logic
@@ -178,11 +180,13 @@ Project Structure
 ├── index.js                    # Main server file
 ├── package.json
 └── README.md                   # Project documentation
+
+
 Node Schema
 The AST is built using a recursive node structure, where each node is stored as a document in MongoDB.
 
 javascript
- 
+```bash
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -192,13 +196,14 @@ const nodeSchema = new Schema({
     left: { type: Schema.Types.ObjectId, ref: 'Node' },  // Left child node
     right: { type: Schema.Types.ObjectId, ref: 'Node' }  // Right child node
 });
-
 module.exports = mongoose.model('Node', nodeSchema);
+
+
 Rule Schema
 Each rule references the root of its AST and stores a human-readable string and a postfix expression.
 
 javascript
- 
+```bash
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
