@@ -1,47 +1,46 @@
-Rule Engine ATS
+# Rule Engine ATS
+
 A rule engine that processes and evaluates business rules based on Abstract Syntax Trees (AST) and logical operators. Rules are stored in MongoDB with their AST structure, and they can be created, combined, evaluated, and deleted using the API.
 
-Features
-Create Rules: Convert logical expressions into ASTs and store them in MongoDB.
-Evaluate Rules: Evaluate stored rules against dynamic input conditions.
-Combine Rules: Combine multiple rules using logical AND or OR operators.
-Delete Rules: Delete rules and their corresponding ASTs from the database.
-View All Rules: Retrieve all the stored rules and their AST structures.
-Technologies Used
-Node.js
-Express.js
-MongoDB
-Mongoose (for schema-based data modeling)
-Getting Started
-Prerequisites
+## Features
+
+- **Create Rules**: Convert logical expressions into ASTs and store them in MongoDB.
+- **Evaluate Rules**: Evaluate stored rules against dynamic input conditions.
+- **Combine Rules**: Combine multiple rules using logical `AND` or `OR` operators.
+- **Delete Rules**: Delete rules and their corresponding ASTs from the database.
+- **View All Rules**: Retrieve all the stored rules and their AST structures.
+
+## Technologies Used
+
+- **Node.js**
+- **Express.js**
+- **MongoDB**
+- **Mongoose** (for schema-based data modeling)
+
+## Getting Started
+
+### Prerequisites
+
 Ensure you have the following installed:
 
-Node.js
-MongoDB
-Installation
-Clone the repository:
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
-bash
-Copy code
-git clone https://github.com/yourusername/rule-engine-ats.git
+### Installation
+
+1. Clone the repository:
+
 Install dependencies:
-
-bash
-Copy code
-cd rule-engine-ats
+cd backend
 npm install
-Set up your MongoDB connection in a .env file:
+node index.js
 
-bash
-Copy code
-MONGO_URI=mongodb://localhost:27017/rule-engine
+Set up your MongoDB connection in a .env file:
+MONGO_URI="ATLUS LINK"
 PORT=3000
 Start the server:
 
-bash
-Copy code
-npm start
-API Endpoints
+## API Endpoints
 1. Create Rule
 Endpoint: /api/rules/create-rule
 
@@ -50,7 +49,7 @@ Method: POST
 Request Body:
 
 json
-Copy code
+
 {
   "rule_name": "rule 1",
   "rule": "((age > 30 AND department = 'Sales') OR (age < 25 AND department = 'Marketing')) AND (salary > 50000 OR experience > 5)"
@@ -58,7 +57,7 @@ Copy code
 Response (Success):
 
 json
-Copy code
+
 {
   "success": true,
   "message": "Rule created successfully",
@@ -73,7 +72,6 @@ Method: POST
 Request Body:
 
 json
-Copy code
 {
   "rule_name": "rule 1",
   "conditions": {
@@ -86,7 +84,7 @@ Copy code
 Response (Success):
 
 json
-Copy code
+
 {
   "success": true,
   "message": "Rule evaluation successful",
@@ -100,7 +98,7 @@ Method: POST
 Request Body:
 
 json
-Copy code
+
 {
   "rule_name": "Combined Rules",
   "rules": [
@@ -111,7 +109,7 @@ Copy code
 Response (Success):
 
 json
-Copy code
+
 {
   "success": true,
   "message": "Rules combined successfully",
@@ -125,7 +123,7 @@ Method: GET
 Response (Success):
 
 json
-Copy code
+
 {
   "success": true,
   "rules": [
@@ -147,20 +145,18 @@ Method: DELETE
 Request Body:
 
 json
-Copy code
+
 {
   "rule_name": "Example Rule"
 }
 Response (Success):
 
 json
-Copy code
+
 {
   "message": "Rule deleted successfully"
 }
-Project Structure
-bash
-Copy code
+## Project Structure
 .
 ├── controllers
 │   └── ruleController.js       # Handles rule-related API logic
@@ -172,11 +168,11 @@ Copy code
 ├── index.js                    # Main server file
 ├── package.json
 └── README.md                   # Project documentation
-Node Schema
+## Node Schema
 The AST is built using a recursive node structure, where each node is stored as a document in MongoDB.
 
 javascript
-Copy code
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -188,11 +184,12 @@ const nodeSchema = new Schema({
 });
 
 module.exports = mongoose.model('Node', nodeSchema);
-Rule Schema
+
+## Rule Schema
 Each rule references the root of its AST and stores a human-readable string and a postfix expression.
 
 javascript
-Copy code
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
