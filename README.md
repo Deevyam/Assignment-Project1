@@ -40,8 +40,8 @@ Set up your MongoDB connection in a .env file:
 
 ```bash
  
-MONGO_URI=mongodb://localhost:27017/rule-engine
-PORT=3000
+MONGO_URI=Atlus link
+PORT=5000
 Start the server:
 
 ```bash
